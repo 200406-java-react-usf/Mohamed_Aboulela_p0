@@ -35,5 +35,5 @@ Suggestions:
 
 ## Entities
 - [ ] User {id, first name, last name, usernname, password, birthdate}
-- [ ] Astrology Sign { id, birthdate, sign, AstroId }
-- [ ] Horoscope { id, sign, message, AstroId }
+- [ ] AstrologyProfile Sign {id, birthdate, sign, AstroId}
+- [ ] Horoscope {id, sign, message, AstroId}
