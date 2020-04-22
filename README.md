@@ -1,6 +1,6 @@
 # Mohamed_Aboulela_p0
 
-For Project 0, you will be building a RESTful API using TypeScript and Express. Associates are allowed to come up with their own API idea, but it must be approved by the trainer; suggested ideas are provided below.
+For Project 0, I will be building a RESTful API using TypeScript and Express. This API will be a social media API that takes in users, their astrology signs, and their horoscopes. The relationship of these objects are based on the user's birthday and astrology sign in which said user was born.
 
 Suggestions: 
 - resource management system API
@@ -32,3 +32,8 @@ Suggestions:
 
 ## Presentation
 - [ ] 5 minute live demonstration of endpoint consumption using Postman
+
+## Entities
+- [ ] User {id, first name, last name, usernname, password, birthdate}
+- [ ] Astrology Sign { id, birthdate, sign, AstroId }
+- [ ] Horoscope { id, sign, message, AstroId }
