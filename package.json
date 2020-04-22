@@ -1,7 +1,7 @@
 {
   "name": "mohamed_aboulela_p0",
   "version": "1.0.0",
-  "description": "social media for astrology fanatics",
+  "description": "social media api for astrology fanatics",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/200406-java-react-usf/Mohamed_Aboulela_p0#readme",
   "devDependencies": {
+    "@types/node": "^12.12.37",
     "jest": "^25.4.0",
+    "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
