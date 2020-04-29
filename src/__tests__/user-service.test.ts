@@ -22,7 +22,7 @@ describe('userService', () => {
         sut = new UserService(mockRepo);
 
         //Reset all external methods 
-        for (let method in UserRespository.prototype) {
+        for (let method in UserRepository.prototype) {
             UserRepository.prototype[method] = jest.fn().mockImplementation(() => {
                 throw new Error(`Failed to mock external method: UserRepository.${method}!`);
             });
