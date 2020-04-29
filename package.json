@@ -30,7 +30,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/jest": "^25.2.1",
     "express": "^4.17.1",
+    "install": "^0.13.0",
     "pg": "^8.0.2",
     "postgres": "^1.0.2"
   }
