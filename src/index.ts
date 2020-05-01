@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import path from 'path';
 
 import { UserRouter } from './routers/user-router';
-//import { PostRouter } from './routers/post-router';
+import { AstrologyRouter } from './routers/astrology-router';
 import { AuthRouter } from './routers/auth-router';
 import { sessionMiddleware } from './middleware/session-middleware';
 import { corsFilter } from './middleware/cors-filter';
@@ -22,7 +22,7 @@ app.use(corsFilter);
 
 
 app.use('/users', UserRouter);
-//app.use('/posts', PostRouter);
+app.use('/signs', AstrologyRouter);
 app.use('/auth', AuthRouter);
 
 

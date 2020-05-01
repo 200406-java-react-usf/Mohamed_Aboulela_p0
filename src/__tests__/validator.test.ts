@@ -1,6 +1,6 @@
 import { isValidId, isValidStrings, isValidObject, isPropertyOf } from "../util/validator";
 import { User } from "../models/user";
-//import { Post } from "../models/post";
+import { Astrology } from "../models/astrology";
 
 describe('validator', () => {
 
@@ -112,11 +112,11 @@ describe('validator', () => {
         expect.assertions(2);
 
         // Act
-        //let result1 = isValidObject(new Post(1, 'title', 'body', 1));
+        let result1 = isValidObject(new Astrology(1, 'title', 'body', 1));
         let result2 = isValidObject(new User(1, 'username', 'password', 'first', 'last', 'email', 'role'));
 
         // Assert
-        //expect(result1).toBe(true);
+        expect(result1).toBe(true);
         expect(result2).toBe(true);
 
     });
@@ -127,11 +127,11 @@ describe('validator', () => {
         expect.assertions(2);
 
         // Act
-        //let result1 = isValidObject(new Post(0, 'title', 'body', 1), 'id');
+        let result1 = isValidObject(new Astrology(0, 'title', 'body', 1), 'id');
         let result2 = isValidObject(new User(0, 'username', 'password', 'first', 'last', 'email', 'role'), 'id');
 
         // Assert
-        //expect(result1).toBe(true);
+        expect(result1).toBe(true);
         expect(result2).toBe(true);
 
     });
@@ -142,11 +142,11 @@ describe('validator', () => {
         expect.assertions(2);
 
         // Act
-        //let result1 = isValidObject(new Post(1, '', 'body', 1));
+        let result1 = isValidObject(new Astrology(1, '', 'body', 1));
         let result2 = isValidObject(new User(1, 'username', 'password', '', 'last', 'email', 'role'));
 
         // Assert
-        //expect(result1).toBe(false);
+        expect(result1).toBe(false);
         expect(result2).toBe(false);
 
     });
@@ -157,11 +157,11 @@ describe('validator', () => {
         expect.assertions(2);
 
         // Act
-        //let result1 = isValidObject(new Post(1, '', 'body', 1), 'id');
+        let result1 = isValidObject(new Astrology(1, '', 'body', 1), 'id');
         let result2 = isValidObject(new User(1, 'username', 'password', '', 'last', 'email', 'role'), 'id');
 
         // Assert
-        //expect(result1).toBe(false);
+        expect(result1).toBe(false);
         expect(result2).toBe(false);
 
     });
@@ -174,12 +174,12 @@ describe('validator', () => {
         // Act
         let result1 = isPropertyOf('id', User);
         let result2 = isPropertyOf('username', User);
-        //let result3 = isPropertyOf('title', Post);
+        let result3 = isPropertyOf('title', Astrology);
 
         // Assert
         expect(result1).toBe(true);
         expect(result2).toBe(true);
-        //expect(result3).toBe(true);
+        expect(result3).toBe(true);
 
     });
 
@@ -191,12 +191,12 @@ describe('validator', () => {
         // Act
         let result1 = isPropertyOf('not-real', User);
         let result2 = isPropertyOf('fake', User);
-        //let result3 = isPropertyOf('titl', Post);
+        let result3 = isPropertyOf('titl', Astrology);
 
         // Assert
         expect(result1).toBe(false);
         expect(result2).toBe(false);
-        //expect(result3).toBe(false);
+        expect(result3).toBe(false);
 
     });
 
