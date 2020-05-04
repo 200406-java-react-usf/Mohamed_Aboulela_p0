@@ -38,4 +38,4 @@ Suggestions:
 - [ ] AstrologyProfile {id, birthdate, sign, AstroId}
 - [ ] Horoscope {id, sign, message, AstroId}
 
-![images](images/ERD Diagram project0.PNG)
+![](images/ERD%20Diagram%20project0.PNG)
