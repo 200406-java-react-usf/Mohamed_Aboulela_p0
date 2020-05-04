@@ -11,5 +11,5 @@ const astrologyService = new AstrologyService(astrologyRepo);
 
 export default {
     userService,
-    //astrologyService
+    astrologyService
 }
