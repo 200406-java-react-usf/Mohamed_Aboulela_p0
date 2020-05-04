@@ -37,3 +37,5 @@ Suggestions:
 - [ ] User {id, first name, last name, usernname, password, birthdate}
 - [ ] AstrologyProfile {id, birthdate, sign, AstroId}
 - [ ] Horoscope {id, sign, message, AstroId}
+
+![images](images/ERD Diagram project0.PNG)
