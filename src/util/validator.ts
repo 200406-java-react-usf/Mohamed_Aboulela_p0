@@ -1,17 +1,31 @@
 export const isValidId = (id: number): boolean => {
-    return !!(id && typeof id === 'number' && Number.isInteger(id) && id > 0);
-};
+    return (id && typeof id === 'number' && Number.isInteger(id) && id > 0);
+}
+
+export function isEmptyObject<T>(obj: T) {
+    return obj && Object.keys(obj).length === 0;
+}
 
 export const isValidStrings = (...strs: string[]): boolean => {
-    return (strs.filter(str => !str || typeof str !== 'string').length == 0);
-};
+   
+    for (let str of strs) {
+        if (!str || typeof str !== 'string') {
+            return false;
+        }
+    }
+
+    return true;
+
+}
 
 export const isValidObject = (obj: Object, ...nullableProps: string[]) => {
+    
     return obj && Object.keys(obj).every(key => {
         if (nullableProps.includes(key)) return true;
         return obj[key];
     });
-};
+
+}
 
 export const isPropertyOf = (prop: string, type: any) => {
 
@@ -32,10 +46,6 @@ export const isPropertyOf = (prop: string, type: any) => {
     
     return Object.keys(tempInstance).includes(prop);
 
-};
-
-export function isEmptyObject<T>(obj: T) {
-    return obj && Object.keys(obj).length === 0;
 }
 
 export default {
