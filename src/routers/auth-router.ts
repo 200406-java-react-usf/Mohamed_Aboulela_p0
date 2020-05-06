@@ -6,10 +6,10 @@ export const AuthRouter = express.Router();
 
 const userService = AppConfig.userService;
 
-AuthRouter.get('', (req, resp) => {
+AuthRouter.get('', async (req,resp) => {
     delete req.session.principal;
     resp.status(204).send();
-});
+})
 
 AuthRouter.post('', async (req, resp) => {
 
