@@ -1,5 +1,6 @@
-import { UserSchema } from "./schemas";
+import { UserSchema, AstrologySchema } from "./schemas";
 import { User } from "../models/user";
+import { Astrology } from "../models/astrology";
 
 export function mapUserResultSet(resultSet: UserSchema): User {
     
@@ -16,4 +17,19 @@ export function mapUserResultSet(resultSet: UserSchema): User {
         resultSet.email,
         resultSet.role_name
     );
+}
+
+
+export function mapAstrologyResultSet(resultSet: AstrologySchema): Astrology {
+
+	if(!resultSet){
+		return {} as Astrology;
+	}
+
+	return new Astrology (
+		resultSet.id,
+		resultSet.title,
+		resultSet.body,
+		resultSet.astrology_id
+	);
 }
