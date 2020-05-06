@@ -9,9 +9,8 @@ export interface UserSchema {
 }
 
 export interface AstrologySchema {
-
-}
-
-export interface ThreadSchema {
-    
+    id: number,
+    title: string,
+    body: string,
+    astrology_id: number
 }
