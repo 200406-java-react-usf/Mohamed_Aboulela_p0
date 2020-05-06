@@ -1,5 +1,5 @@
 export const isValidId = (id: number): boolean => {
-    return (id && typeof id === 'number' && Number.isInteger(id) && id > 0);
+    return !!(id && typeof id === 'number' && Number.isInteger(id) && id > 0);
 }
 
 export function isEmptyObject<T>(obj: T) {

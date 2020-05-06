@@ -119,43 +119,6 @@ import { BadRequestError, ResourceNotFoundError, NotImplementedError, ResourcePe
     
         }
     
-        async getUserByUniqueKey(queryObj: any): Promise<User> {
-            //WIP - not implemented
-            try {
-    
-                let queryKeys = Object.keys(queryObj);
-    
-                if(!queryKeys.every(key => isPropertyOf(key, User))) {
-                    throw new BadRequestError();
-                }
-    
-                // only supports single param searches (for now)
-                let key = queryKeys[0];
-                let val = queryObj[key];
-    
-                // if they are searching for a user by id, reuse the logic we already have
-                if (key === 'id') {
-                    return await this.getUserById(+val);
-                }
-    
-                if(!isValidStrings(val)) {
-                    throw new BadRequestError();
-                }
-    
-                let user = await this.userRepo.getUserByUniqueKey(key, val);
-    
-                if (isEmptyObject(user)) {
-                    throw new ResourceNotFoundError();
-                    
-                }
-    
-                return this.removePassword(user);
-    
-            } catch (e) {
-                throw e;
-            }
-        }
-    
         async checkUsername(username: string): Promise<boolean> {
             
             try {

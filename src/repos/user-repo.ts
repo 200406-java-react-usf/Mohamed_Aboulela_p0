@@ -3,8 +3,8 @@ import { User } from '../models/user';
 import { CrudRepository } from './crud-repo';
 import { NotImplementedError,  ResourceNotFoundError, ResourcePersistenceError } from '../errors/errors';
 import { InternalServerError } from '../errors/errors';
-import { PoolClient } from 'pg';
 import { connectionPool } from '..';
+import { PoolClient } from 'pg';
 import { mapUserResultSet } from '../util/result-set-mapper';
 
 
@@ -24,6 +24,7 @@ export class UserRepository implements CrudRepository<User> {
     on u.role_id = ur.id
     `;
     
+    // Gets all users from database
     async getAll(): Promise<User[]> {
 
             let client: PoolClient;
@@ -40,6 +41,7 @@ export class UserRepository implements CrudRepository<User> {
            
         };
 
+    //Gets single user if exists
     async getById(id: number): Promise<User> {
         
         let client: PoolClient;
@@ -56,6 +58,7 @@ export class UserRepository implements CrudRepository<User> {
 
     }
 
+    //Logs in user if credentials are correct
     async getbyCredentials(un: string, pw: string) {
         let client: PoolClient;
 
@@ -71,6 +74,7 @@ export class UserRepository implements CrudRepository<User> {
         }
     }
 
+    //creates new user
     async save(newUser: User): Promise<User> {
         let client: PoolClient;
         
@@ -98,6 +102,7 @@ export class UserRepository implements CrudRepository<User> {
 
     }
 
+    //updates user
     async update(updatedUser: User): Promise<boolean> {
         let client: PoolClient;
             try { 
@@ -123,6 +128,7 @@ export class UserRepository implements CrudRepository<User> {
             }
     }
 
+    //deletes user
     async delete(userToDelete: User): Promise<boolean> {
         let client: PoolClient;
             try { 
@@ -139,23 +145,6 @@ export class UserRepository implements CrudRepository<User> {
             } finally {
                 client && client.release();
             }
-    }
-
-    async getUserByUniqueKey(key: string, val: string): Promise<User> {
-
-        let client: PoolClient;
-
-        try {
-            client = await connectionPool.connect();
-            let sql = `${this.baseQuery} where u.${key} = $1`;
-            let rs = await client.query(sql, [val]);
-            return mapUserResultSet(rs.rows[0]);
-        } catch (e) {
-            throw new InternalServerError();
-        } finally {
-            client && client.release();
-        }
-    
     }
 
     async checkUsername(username: string): Promise<User> {

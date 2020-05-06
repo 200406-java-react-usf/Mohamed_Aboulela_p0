@@ -1,59 +1,47 @@
-import url from 'url';
-import express from 'express';
+import express, { response } from 'express';
 import AppConfig from '../config/app';
-import { isEmptyObject } from '../util/validator';
-import { ParsedUrlQuery } from 'querystring';
 import { adminGuard } from '../middleware/auth-middleware';
 
 export const UserRouter = express.Router();
 
 const userService = AppConfig.userService;
 
+
+ //Used to get all users into the database.
+
 UserRouter.get('', adminGuard, async (req, resp) => {
+    try{
 
-    try {
-
-        let reqURL = url.parse(req.url, true);
-
-        if(!isEmptyObject<ParsedUrlQuery>(reqURL.query)) {
-            let payload = await userService.getUserByUniqueKey({...reqURL.query});
-            resp.status(200).json(payload);
-        } else {
-            let payload = await userService.getAllUsers();
-            resp.status(200).json(payload);
-        }
-
-    } catch (e) {
-        resp.status(e.statusCode).json(e);
+        let payload = await userService.getAllUsers();
+        resp.status(200).json(payload);
+    } catch (e){
+        resp.status(404).json(e);
     }
-
-    resp.send();
-
 });
 
+ //Used to get user with specific id
 UserRouter.get('/:id', async (req, resp) => {
-    const id = +req.params.id;
-    try {
+    const id = +req.params.id; //the plus sign is to type coerce id into a number
+    try { 
         let payload = await userService.getUserById(id);
-        return resp.status(200).json(payload);
+        resp.status(200).json(payload);
     } catch (e) {
-        return resp.status(e.statusCode).json(e).send();
+        resp.status(404).json(e);
     }
 });
 
+//adds new user
 UserRouter.post('', async (req, resp) => {
-
-    console.log('POST REQUEST RECEIVED AT /users');
-    console.log(req.body);
+    
     try {
         let newUser = await userService.addNewUser(req.body);
-        return resp.status(201).json(newUser).send();
+        return resp.status(201).json(newUser);
     } catch (e) {
-        return resp.status(e.statusCode).json(e).send();
+        return resp.status(e.statusCode || 500).json(e);
     }
-
 });
 
+//updates user
 UserRouter.put('', async (req,resp) => {
     try {
         let updatedUser = await userService.updateUser(req.body);
@@ -63,6 +51,7 @@ UserRouter.put('', async (req,resp) => {
     }
 });
 
+//deletes user
 UserRouter.delete('', adminGuard, async (req,resp) => {
     try {
         let userToBeDeleted = await userService.deleteUser(req.body);

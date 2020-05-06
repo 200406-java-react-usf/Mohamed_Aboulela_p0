@@ -25,30 +25,3 @@ AstrologyRouter.get('/:id', async (req, resp) => {
         return resp.status(404).json(e).send();
     }
 });
-
-AstrologyRouter.post('', async (req, resp) => {
-    try {
-        let newAstrology = await astrologyService.addNewSign(req.body);
-        return resp.status(201).json(newAstrology);
-    } catch (e) {
-        return resp.status(e.statusCode || 500).json(e);
-    }
-})
-
-AstrologyRouter.put('', async (req,resp) => {
-    try {
-        let updatedAstrology = await astrologyService.updateSign(req.body);
-        return resp.status(202).json(updatedAstrology);
-    } catch (e) {
-        return resp.status(e.statusCode || 500).json(e);
-    }
-})
-
-AstrologyRouter.delete('', adminGuard, async (req, resp) => {
-    try {
-        let signToBeDeleted = await astrologyService.deleteSign(req.body);
-        return resp.status(202).json(signToBeDeleted);
-    } catch (e) {
-        return resp.status(e.statusCode || 500).json(e);
-    }
-})
