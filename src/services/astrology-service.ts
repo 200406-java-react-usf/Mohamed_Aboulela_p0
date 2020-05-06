@@ -57,22 +57,6 @@ export class AstrologyService {
         return persistedAstrology;
     }
 
-	// async saveAstrology(newAstrology: Astrology): Promise<Astrology> {
-
-	// 	if (!isValidObject(newAstrology, 'id')) {
-	// 		throw new BadRequestError('Invalide Astrology');
-	// 	}
-
-	// 	const storedAstrology = await this.astrologyRepo.save(newAstrology);
-
-	// 	if (!isValidObject(storedAstrology)){
-	// 		throw new DataNotStoredError('New astrology was not saved');
-	// 	}
-
-	// 	return storedAstrology;
-
-	// }
-
 	async updateSign(updateAstrology: Astrology): Promise<boolean> {
 
 		if (!isValidObject(updateAstrology)) {
