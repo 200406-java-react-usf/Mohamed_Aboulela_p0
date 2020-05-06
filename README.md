@@ -1,6 +1,6 @@
 # Mohamed_Aboulela_p0
 
-For Project 0, I will be building a RESTful API using TypeScript and Express. This API will be a social media API that takes in users, their astrology signs, and their horoscopes. The relationship of these objects are based on the user's birthday and astrology sign in which said user was born.
+For Project 0, I will be building a RESTful API using TypeScript and Express. This API will be a social media API that takes in users, their astrology signs, and their horoscopes. The relationship of these objects are based on the user's astrology id and astrology sign in which said user was assigned to.
 
 Suggestions: 
 - resource management system API
@@ -34,8 +34,8 @@ Suggestions:
 - [ ] 5 minute live demonstration of endpoint consumption using Postman
 
 ## Entities
-- [ ] User {id, first name, last name, usernname, password, birthdate}
-- [ ] AstrologyProfile {id, birthdate, sign, AstroId}
-- [ ] Horoscope {id, sign, message, AstroId}
+- [ ] User {id, first name, last name, usernname, password, email}
+- [ ] AstrologyProfile {id, birthdate, sign, astrologyId} //not included :(
+- [ ] signs {id, title, body, astrologyId}
 
 ![](images/ERD%20Diagram%20project0.PNG)
