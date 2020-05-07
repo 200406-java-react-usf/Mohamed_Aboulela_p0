@@ -4,6 +4,14 @@ import * as mockMapper from '../util/result-set-mapper';
 import { Astrology } from '../models/astrology';
 import { InternalServerError } from '../errors/errors';
 
+
+
+/*
+    We need to mock the connectionPool exported from the main module
+    of our application. At this time, we only use one exposed method
+    of the pg Pool API: connect. So we will provide a mock function 
+    in its place so that we can mock it in our tests.
+*/
 jest.mock('..', () => {
     return {
         connectionPool: {

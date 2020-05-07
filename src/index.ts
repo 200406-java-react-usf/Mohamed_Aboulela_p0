@@ -23,12 +23,14 @@ export const connectionPool: Pool = new Pool({
 	max: 5
 });
 
-const app = express();
+
 
 // logging configuration
 fs.mkdir(`${__dirname}/logs`, () => {});
 const logStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), { flags: 'a' });
 
+// web server configuration
+const app = express();
 app.use(morgan('combined', { stream: logStream }));
 app.use('/', express.json());
 app.use(sessionMiddleware);

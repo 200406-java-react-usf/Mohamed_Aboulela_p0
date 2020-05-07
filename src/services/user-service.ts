@@ -32,7 +32,7 @@ import { BadRequestError, ResourceNotFoundError, NotImplementedError, ResourcePe
                 let authUser: User = await this.userRepo.getbyCredentials(un,pw);
     
                 if (isEmptyObject(authUser)) {
-                    throw new AuthenticationError();
+                    throw new AuthenticationError('Bad credentials provided.');
                 }
     
                 return this.removePassword(authUser);
@@ -54,6 +54,44 @@ import { BadRequestError, ResourceNotFoundError, NotImplementedError, ResourcePe
                 }
     
                 return this.removePassword(user);
+            } catch (e) {
+                throw e;
+            }
+        }
+
+        async getUserByUniqueKey(queryObj: any): Promise<User> {
+
+            // we need to wrap this up in a try/catch in case errors are thrown for our awaits
+            try {
+    
+                let queryKeys = Object.keys(queryObj);
+    
+                if(!queryKeys.every(key => isPropertyOf(key, User))) {
+                    throw new BadRequestError();
+                }
+    
+                // we will only support single param searches (for now)
+                let key = queryKeys[0];
+                let val = queryObj[key];
+    
+                // if they are searching for a user by id, reuse the logic we already have
+                if (key === 'id') {
+                    return await this.getUserById(+val);
+                }
+    
+                // ensure that the provided key value is valid
+                if(!isValidStrings(val)) {
+                    throw new BadRequestError();
+                }
+    
+                let user = await this.userRepo.getUserByUniqueKey(key, val);
+    
+                if (isEmptyObject(user)) {
+                    throw new ResourceNotFoundError();
+                }
+    
+                return this.removePassword(user);
+    
             } catch (e) {
                 throw e;
             }

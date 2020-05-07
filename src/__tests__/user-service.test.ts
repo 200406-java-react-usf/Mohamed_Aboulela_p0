@@ -13,7 +13,7 @@ jest.mock('../repos/user-repo', () => {
         save = jest.fn();
         update = jest.fn();
         delete = jest.fn();
-        //getUserByUniqueKey = jest.fn();
+        getUserByUniqueKey = jest.fn();
     }
 });
 
@@ -39,7 +39,7 @@ describe('userService', () => {
                 save: jest.fn(),
                 update: jest.fn(),
                 delete: jest.fn(),
-                //getUserByUniqueKey: jest.fn()
+                getUserByUniqueKey: jest.fn()
             }
         });
 
