@@ -4,7 +4,8 @@
   "description": "social media api for astrology fanatics",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --no-cache",
+    "start": "tsc && node ./build/index.js",
+    "test": "jest",
     "coverage": "jest --coverage"
   },
   "repository": {
