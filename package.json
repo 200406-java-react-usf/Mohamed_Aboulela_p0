@@ -4,8 +4,8 @@
   "description": "social media api for astrology fanatics",
   "main": "index.js",
   "scripts": {
-  "test": "jest --watch --no-cache",
-  "coverage": "jest --coverage"
+    "test": "jest --watch --no-cache",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "eslint": "^6.8.0",
+    "http-server": "^0.12.3",
     "jest": "^25.5.4",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
@@ -39,6 +40,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.0.2",
     "postgres": "^1.0.2",
+    "start": "^5.1.0",
     "ts-node": "^8.9.1"
   }
 }
